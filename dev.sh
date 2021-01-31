@@ -1,0 +1,1 @@
+docker-compose run --rm -p 3003:3003 dev

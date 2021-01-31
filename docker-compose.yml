@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  dev:
+    image: node:current-buster
+    container_name: tw-dev
+    user: node
+    entrypoint: bash
+    working_dir: /working
+    environment:
+      - NODE_ENV=development
+      - PORT=3003
+    volumes:
+      - ./:/working
+      - dev_nm:/working/node_modules
+
+volumes:
+  dev_nm:
