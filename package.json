@@ -1,6 +1,6 @@
 {
-  "name": "use-tailwinds-portal",
-  "version": "0.1.0",
+  "name": "my-tailwinds-components",
+  "version": "0.0.0",
   "private": true,
   "dependencies": {
     "@tailwindcss/typography": "^0.4.0",

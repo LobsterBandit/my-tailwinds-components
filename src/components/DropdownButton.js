@@ -1,13 +1,13 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 import tw, { styled } from "twin.macro";
 import { Button } from "./Button";
 import { ChevronDown } from "./ChevronDown";
 import { DropdownMenu } from "./DropdownMenu";
 import { MenuItem } from "./Menu";
-import { Portal } from "./Portal";
 
 const StyledDropdownButton = styled(Button)`
-  ${({ open }) => open && tw`bg-gray-100`}
+  ${({ open }) => open && tw`bg-gray-100 dark:bg-gray-600`}
 `;
 const DropdownButtonIcon = styled(ChevronDown)`
   ${tw`h-4 w-4 fill-current`}
@@ -15,6 +15,7 @@ const DropdownButtonIcon = styled(ChevronDown)`
 `;
 export function DropdownButton(props) {
   const { title, onClick } = props;
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <StyledDropdownButton
@@ -22,24 +23,25 @@ export function DropdownButton(props) {
         aria-haspopup="true"
         aria-expanded="true"
         {...props}
-        open={true}
+        open={isOpen}
         onClick={(e) => {
           onClick && onClick(e);
+          setIsOpen((open) => !open);
         }}
       >
         {title && title}
-        <DropdownButtonIcon open={true} />
+        <DropdownButtonIcon open={isOpen} />
       </StyledDropdownButton>
-      <Portal containerId="use-tw-portal">
-        <DropdownMenu
-          options={["Account Settings", "Support", "License"]}
-          divider
-        >
-          <MenuItem role="menuItem" type="button">
-            Sign out
-          </MenuItem>
-        </DropdownMenu>
-      </Portal>
+      <DropdownMenu
+        containerId="use-tw-portal"
+        open={isOpen}
+        options={["Account Settings", "Support", "License"]}
+        divider
+      >
+        <MenuItem role="menuItem" type="button">
+          Sign out
+        </MenuItem>
+      </DropdownMenu>
     </>
   );
 }

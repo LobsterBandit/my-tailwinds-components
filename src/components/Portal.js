@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 
-function getContainer(containerId) {
+export function getContainer(containerId) {
   return document.getElementById(containerId);
 }
 

@@ -1,5 +1,5 @@
 module.exports = {
-  dark: "class",
+  dark: "media",
   theme: {
     extend: {
       colors: {},

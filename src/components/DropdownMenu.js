@@ -2,8 +2,15 @@ import PropTypes from "prop-types";
 import { Menu, MenuItem } from "./Menu";
 import { Popover } from "./Popover";
 
-export const DropdownMenu = ({ divider, options, children, ...props }) => (
-  <Popover>
+export const DropdownMenu = ({
+  divider,
+  open,
+  options,
+  children,
+  containerId,
+  ...props
+}) => (
+  <Popover containerId={containerId} open={open}>
     <Menu
       role="menu"
       aria-orientation="vertical"
@@ -27,6 +34,7 @@ export const DropdownMenu = ({ divider, options, children, ...props }) => (
 
 DropdownMenu.propTypes = {
   dividier: PropTypes.bool,
+  open: PropTypes.bool.isRequired,
   options: PropTypes.arrayOf(PropTypes.string),
   children: PropTypes.element,
 };
